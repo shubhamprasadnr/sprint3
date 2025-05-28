@@ -7,10 +7,14 @@
 | Shubham | 28-04-25   |  version1| -      | L2  Review  | Mahesh Kumar|
 
 ##  Table of Contents
+1. [Jenkins Installations](#jenkins-installations)
+2. [Sonarqube Installations](#sonarqube-installations)  
+3. [Sonarqube-Setup](#sonarqube-setup)
+4. [Contact Information](#contact-information)
 
-1. [Sonarqube Installations](#sonarqube-installations)  
-2. [Sonarqube-Setup](#sonarqube-setup)
-3.[Contact Information](#contact-information)
+
+## Jenkins Installations 
+Refer this [link for POC](https://github.com/Cloud-NInja-snaatak/Documentation/tree/himanshu-SCRUM-176/application_ci/tools/setup/sonarqube/software_configuration/poc).
 
 ## Sonarqube Installations
 Refer this [link for POC](https://github.com/Cloud-NInja-snaatak/Documentation/tree/himanshu-SCRUM-176/application_ci/tools/setup/sonarqube/software_configuration/poc).
@@ -37,53 +41,34 @@ Refer this [link for POC](https://github.com/Cloud-NInja-snaatak/Documentation/t
 
 #### Declarative script 
 <details>
-pipeline {
-    agent any
-    
-    
-    tools{
-        maven 'mvn'  
+node {
+    def mvnHome = tool name: 'mvn', type: 'maven'
+    env.PATH = "${mvnHome}/bin:${env.PATH}"
+    env.SONARQUBE_URL = 'http://<your-sonarqube-ip>:9000'
+    env.SONAR_PROJECT_KEY = 'scripted'
+
+    stage('Checkout') {
+        git branch: 'master', url: 'https://github.com/shubhamprasadnr/secretsanta-generator.git'
     }
 
-    environment {
-        SONARQUBE_URL = 'http://16.16.187.233:9000/' // Update with your SonarQube server URL
-        SONAR_PROJECT_KEY = 'java' // Update with your actual SonarQube project key
+    stage('Build') {
+        sh 'mvn clean verify'
     }
 
-    stages {
-        stage('Cleanup Workspace') {
-          steps {
-        cleanWs()
-           }
-         }
-        stage('Checkout Code') {
-            steps {
-                git branch: 'master', url: 'https://github.com/shubhamprasadnr/secretsanta-generator.git' // Updated repo URL
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'mvn clean compile'
-            }
-        }
-
-        stage('sonarQube Scan') {
-            steps {
-                withSonarQubeEnv('sonarqube') { // Ensure 'demo' matches the SonarQube instance name in Jenkins settings
-                    withCredentials([string(credentialsId: 'sonarcred', variable: 'SONARQUBE_TOKEN')]) {
-                        sh """
-                        mvn sonar:sonar \
-                        -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-                        -Dsonar.host.url=${SONARQUBE_URL} \
-                        -Dsonar.login=${SONARQUBE_TOKEN}
-                        """
-                    }
-                }
+    stage('SonarQube Scan') {
+        withSonarQubeEnv('sonarQube') {
+            withCredentials([string(credentialsId: 'javacred', variable: 'SONARQUBE_TOKEN')]) {
+                sh """
+                mvn sonar:sonar \
+                -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} \
+                -Dsonar.host.url=${env.SONARQUBE_URL} \
+                -Dsonar.login=${SONARQUBE_TOKEN}
+                """
             }
         }
     }
 }
+
 
 </details>
 
