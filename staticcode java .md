@@ -41,45 +41,37 @@ Refer this [link for POC](https://github.com/Cloud-NInja-snaatak/Documentation/t
 
 #### Declarative script 
 <details>
+
 pipeline {
     agent any
-    
-    
-    tools{
+    tools {
         maven 'mvn'  
     }
-
     environment {
-        SONARQUBE_URL = 'http://16.16.187.233:9000/' // Update with your SonarQube server URL
-        SONAR_PROJECT_KEY = 'java' // Update with your actual SonarQube project key
+        SONAR_PROJECT_KEY = 'java'
     }
-
+   
     stages {
-        stage('Cleanup Workspace') {
-          steps {
-        cleanWs()
-           }
-         }
-        stage('Checkout Code') {
+         stage('Checkout Code') {
             steps {
                 git branch: 'master', url: 'https://github.com/shubhamprasadnr/secretsanta-generator.git' // Updated repo URL
             }
         }
-
-        stage('Build') {
+        
+         stage('Build') {
             steps {
                 sh 'mvn clean compile'
             }
         }
+        // ... other stages ...
 
-        stage('sonarQube Scan') {
+        stage('SonarQube Scan') {
             steps {
-                withSonarQubeEnv('sonarqube') { // Ensure 'demo' matches the SonarQube instance name in Jenkins settings
+                withSonarQubeEnv('sonarqube') {  // 'sonarqube' must match the server name in Jenkins config
                     withCredentials([string(credentialsId: 'sonarcred', variable: 'SONARQUBE_TOKEN')]) {
                         sh """
                         mvn sonar:sonar \
                         -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-                        -Dsonar.host.url=${SONARQUBE_URL} \
                         -Dsonar.login=${SONARQUBE_TOKEN}
                         """
                     }
@@ -88,6 +80,9 @@ pipeline {
         }
     }
 }
+
+      
+           
 
 </details>
 
