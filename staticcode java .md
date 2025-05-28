@@ -3,10 +3,10 @@
 
 
 
-## Sonarqube setup  
+## Sonarqube Installations
 Refer this [link for POC](https://github.com/Cloud-NInja-snaatak/Documentation/tree/himanshu-SCRUM-176/application_ci/tools/setup/sonarqube/software_configuration/poc).
 
-
+## Sonarqube Setup
 #### Create Token For a Project on Sonarqube Dashboard 
 
 ![java_dec3](https://github.com/user-attachments/assets/cbd0f3a5-f5e2-4ddd-afac-8db15eb6b63d)
