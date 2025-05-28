@@ -10,7 +10,7 @@
 ![Screenshot 2025-05-28 094317](https://github.com/user-attachments/assets/54b4caef-5c70-4439-9c7f-c70cbf125c6a)
 
 
-![Screenshot 2025-05-28 094123](https://github.com/user-attachments/assets/e1c486f2-f896-4f6d-a866-1472845e440c)
+
 
 #### Select Credential to setup Tokens 
 ![java_dec4](https://github.com/user-attachments/assets/85315983-27ad-4376-8069-e9f81c83607d)
