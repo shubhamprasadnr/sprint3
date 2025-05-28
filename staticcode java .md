@@ -24,7 +24,7 @@
 ![java_dec7](https://github.com/user-attachments/assets/5f4714c7-5c18-40cf-9a35-118d31d523b7)
 
 #### Declarative script 
-<summary>
+<details>
 pipeline {
     agent any
     
@@ -73,7 +73,7 @@ pipeline {
     }
 }
 
-</summary>
+</details>
 
 #### Run pipeline Successfully 
 ![java_dec8](https://github.com/user-attachments/assets/443f5d95-f86b-46eb-b274-4f663c77d41b)
