@@ -2,7 +2,9 @@
 
 
 
-
+## Sonarqube setup 
+##  Proof of Concept 
+Refer this [link for POC](https://github.com/Cloud-NInja-snaatak/Documentation/tree/himanshu-SCRUM-176/application_ci/tools/setup/sonarqube/software_configuration/poc).
 
 ## Setup Sonarqube 
 
@@ -82,6 +84,14 @@ pipeline {
 
 #### Result On Sunarqube Dashboard 
 ![Screenshot 2025-05-28 100839](https://github.com/user-attachments/assets/b1b732ec-a6fb-446d-9a57-37bc2211580a)
+
+
+
+##  Contact Information
+
+| Name | Email Address |
+|------|---------------|
+| Shubham Prasad | [shubham.prasad.snaatak@mygurukulam.co](mailto:shubham.prasad.snaatak@mygurukulam.co) |
 
 
 
