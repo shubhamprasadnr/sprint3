@@ -12,7 +12,7 @@
 1. [Jenkins Installations](#jenkins-installations)
 2. [Sonarqube Installations](#sonarqube-installations)  
 3. [Sonarqube-Setup](#sonarqube-setup)
-4.[Contact Information](#contact-information)
+4. [Contact Information](#contact-information)
 
 
 ## Jenkins Installations 
