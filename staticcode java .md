@@ -25,6 +25,53 @@
 
 #### Declarative script 
 <summary>
+pipeline {
+    agent any
+    
+    
+    tools{
+        maven 'mvn'  
+    }
+
+    environment {
+        SONARQUBE_URL = 'http://16.16.187.233:9000/' // Update with your SonarQube server URL
+        SONAR_PROJECT_KEY = 'java' // Update with your actual SonarQube project key
+    }
+
+    stages {
+        stage('Cleanup Workspace') {
+          steps {
+        cleanWs()
+           }
+         }
+        stage('Checkout Code') {
+            steps {
+                git branch: 'master', url: 'https://github.com/shubhamprasadnr/secretsanta-generator.git' // Updated repo URL
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('sonarQube Scan') {
+            steps {
+                withSonarQubeEnv('sonarqube') { // Ensure 'demo' matches the SonarQube instance name in Jenkins settings
+                    withCredentials([string(credentialsId: 'sonarcred', variable: 'SONARQUBE_TOKEN')]) {
+                        sh """
+                        mvn sonar:sonar \
+                        -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+                        -Dsonar.host.url=${SONARQUBE_URL} \
+                        -Dsonar.login=${SONARQUBE_TOKEN}
+                        """
+                    }
+                }
+            }
+        }
+    }
+}
 
 </summary>
 
