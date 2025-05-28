@@ -2,8 +2,7 @@
 
 
 
-## Sonarqube setup 
-##  Proof of Concept 
+## Sonarqube Installations
 Refer this [link for POC](https://github.com/Cloud-NInja-snaatak/Documentation/tree/himanshu-SCRUM-176/application_ci/tools/setup/sonarqube/software_configuration/poc).
 
 ## Setup Sonarqube 
