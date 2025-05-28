@@ -77,11 +77,12 @@ pipeline {
 </details>
 
 #### Run pipeline Successfully 
-![java_dec8](https://github.com/user-attachments/assets/443f5d95-f86b-46eb-b274-4f663c77d41b)
+![Screenshot 2025-05-28 100611](https://github.com/user-attachments/assets/7c620e20-fc71-403d-9d08-8e1ed8489d5f)
+
 
 #### Result On Sunarqube Dashboard 
+![Screenshot 2025-05-28 100839](https://github.com/user-attachments/assets/b1b732ec-a6fb-446d-9a57-37bc2211580a)
 
-![java_dec9](https://github.com/user-attachments/assets/f98688f9-8ff7-4cd4-8ef7-33400449d217)
 
 
 
