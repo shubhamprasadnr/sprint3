@@ -1,0 +1,38 @@
+node {
+    // Set environment variables
+    env.PYTHON = "/usr/bin/python3"
+    env.VENV_DIR = "venv"
+
+    stage('Git Checkout') {
+         git branch: 'main', url: 'https://github.com/OT-MICROSERVICES/attendance-api.git'
+    }
+
+    // stage('Setup Virtual Environment') {
+    //     sh """
+    //         ${env.PYTHON} -m venv ${env.VENV_DIR}
+    //         ${env.VENV_DIR}/bin/pip install --upgrade pip
+    //         ${env.VENV_DIR}/bin/pip install pipreqs
+    //         ${env.VENV_DIR}/bin/pipreqs . --force
+    //     """
+    // }
+
+    stage('DAST Scan with ZAP') {
+        sh """
+            zaproxy -cmd -port 8090 \
+            -quickurl http://54.237.233.167:8080/apidocs/ \
+            -quickout ${WORKSPACE}/zap-report.html \
+            -quickprogress
+        """
+    }
+
+    stage('Publish ZAP Report') {
+        publishHTML([
+            allowMissing: false,
+            alwaysLinkToLastBuild: false,
+            keepAll: false,
+            reportDir: '',
+            reportFiles: 'zap-report.html',
+            reportName: 'ZAP Security Report'
+        ])
+    }
+}
