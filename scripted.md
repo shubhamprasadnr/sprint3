@@ -7,8 +7,8 @@
 ## Setup Sonarqube 
 
 #### Create Token For a Project on Sonarqube Dashboard 
+![Screenshot 2025-05-28 094317](https://github.com/user-attachments/assets/54b4caef-5c70-4439-9c7f-c70cbf125c6a)
 
-![java_dec3](https://github.com/user-attachments/assets/cbd0f3a5-f5e2-4ddd-afac-8db15eb6b63d)
 
 ![Screenshot 2025-05-28 094123](https://github.com/user-attachments/assets/e1c486f2-f896-4f6d-a866-1472845e440c)
 
